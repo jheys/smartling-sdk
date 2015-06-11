@@ -14,6 +14,7 @@
   "scripts": {
     "test": "npm run unit && npm run ci-coverage",
     "ci-coverage": "mocha -r blanket -R travis-cov",
+    "report-coverage": "mocha -r blanket -R html-cov > coverage.html",
     "record-unit": "REPLAY=record mocha ./test/smartling-test.js --config=./config/integration.json --delay=1000",
     "integration": "REPLAY=bloody mocha ./test/smartling-test.js --config=./config/integration.json --delay=1000",
     "unit": "mocha ./test/smartling-test.js --config=./config/unit.json"

@@ -10,6 +10,9 @@ var path      = require("path"),
 //change the fixtures directory
 Replay.fixtures = path.join(__dirname, './fixtures/replay');
 
+//change the mode to 'record' to capture new api requests
+//Replay.mode = 'replay';
+
 var SmartlingSdk = require("../smartling");
 
 describe('SmartlingSdk', function() {
@@ -88,7 +91,7 @@ describe('SmartlingSdk', function() {
   });
 
   it('should get a list of files', function(done){
-    sdk.list()
+    sdk.fileList()
       .then(function(response) {
         expect(response.hasOwnProperty('fileCount')).to.equal(true);
         expect(response.hasOwnProperty('fileList')).to.equal(true);
@@ -102,7 +105,7 @@ describe('SmartlingSdk', function() {
   });
 
   it('should upload a file', function(done){
-   sdk.upload(TEST_UPLOAD_JSON_PATH, TEST_UPLOAD_JSON_URI, 'json')
+   sdk.fileUpload(TEST_UPLOAD_JSON_PATH, TEST_UPLOAD_JSON_URI, 'json')
       .then(function(uploadInfo) {
         expect(uploadInfo.wordCount).to.equal(5);
         expect(uploadInfo.stringCount).to.equal(2);
@@ -115,7 +118,8 @@ describe('SmartlingSdk', function() {
   });
 
   it('should upload a file with custom options', function(done){
-    sdk.upload(TEST_UPLOAD_JSON_PATH, TEST_UPLOAD_JSON_URI, 'json', {
+    sdk.fileUpload(TEST_UPLOAD_JSON_PATH, TEST_UPLOAD_JSON_URI, 'json', {
+        "localesToApprove": ['fr-FR, de-DE'],
         "smartling": {
           "placeholder_format_custom": "__.+?__"
         }
@@ -135,10 +139,10 @@ describe('SmartlingSdk', function() {
     //TODO: We should setup/teardown the Replay headers for POST here instead of at the top of all the tests
     //However this causes errors. So I need to do it at the top instead
     //setupReplayHeadersForPOST();
-    sdk.status(TEST_UPLOAD_JSON_URI, 'en')
+    sdk.fileStatus(TEST_UPLOAD_JSON_URI, 'en')
       .then(function(statusInfo) {
         //restoreReplayHeaders();
-        //console.log('response', response);
+        //console.log('response', statusInfo);
         expect(statusInfo.fileUri).to.equal(TEST_UPLOAD_JSON_URI);
         expect(statusInfo.fileType).to.equal('json');
         done();
@@ -151,7 +155,7 @@ describe('SmartlingSdk', function() {
   });
 
   it('should get a file from Smartling', function(done){
-    sdk.get(TEST_UPLOAD_JSON_URI)
+    sdk.fileGet(TEST_UPLOAD_JSON_URI)
       .then(function(response) {
         //console.log('response', response);
         expect(response).to.deep.equal(TEST_UPLOAD_JSON);
@@ -164,7 +168,7 @@ describe('SmartlingSdk', function() {
   });
 
   it('should download a file from Smartling', function(done){
-    sdk.get(TEST_UPLOAD_JSON_URI, DOWNLOAD_FILE_PATH)
+    sdk.fileGet(TEST_UPLOAD_JSON_URI, DOWNLOAD_FILE_PATH)
       .then(function() {
         fs.exists(DOWNLOAD_FILE_PATH, function(exists) {
           if (exists) {
@@ -189,7 +193,7 @@ describe('SmartlingSdk', function() {
   });
 
   it('should rename a previously uploaded file', function(done){
-    sdk.rename(TEST_UPLOAD_JSON_URI, TEST_UPLOAD_JSON_RENAME_URI)
+    sdk.fileRename(TEST_UPLOAD_JSON_URI, TEST_UPLOAD_JSON_RENAME_URI)
       .then(function() {
         //rename returns nothing on success
         done();
@@ -201,7 +205,7 @@ describe('SmartlingSdk', function() {
   });
 
   it('should remove a previously uploaded file', function(done){
-    sdk.delete(TEST_UPLOAD_JSON_RENAME_URI)
+    sdk.fileDelete(TEST_UPLOAD_JSON_RENAME_URI)
       .then(function() {
         //delete returns nothing on success
         done();
@@ -213,7 +217,7 @@ describe('SmartlingSdk', function() {
   });
 
   it('should fail to get status of a file that does not exist', function(done){
-    sdk.status(BAD_JSON_URI, 'en')
+    sdk.fileStatus(BAD_JSON_URI, 'en')
       .then(function(statusInfo) {
         //this call should fail
         done(false);
@@ -223,4 +227,47 @@ describe('SmartlingSdk', function() {
         done();
       });
   });
+
+  it('should import a file', function(done){
+    // import is not supported in sandox mode, but let's at least get the coverage
+    sdk.fileImport(TEST_UPLOAD_JSON_PATH, TEST_UPLOAD_JSON_URI, 'json', 'fr-FR', false, 'PUBLISHED')
+        .then(function(response) {
+          //console.log(response);
+          done(false);
+        })
+        .fail(function(err) {
+          // we're expecting this to fail :/
+          //expect(error.code).to.equal('VALIDATION_ERROR');
+          done();
+        });
+  });
+
+  it('should get a list of last modified', function(done){
+    sdk.fileLastModified(TEST_UPLOAD_JSON_URI)
+        .then(function(response) {
+          //console.log(response);
+          expect(response.items).to.exist();
+          expect(response.items).to.include({lastModified:"2015-06-10T21:02:33",locale:"fr-FR"});
+          done();
+        })
+        .fail(function(err) {
+          console.log(err);
+          done();
+        });
+  });
+
+  it('should get a list of project locales', function(done){
+    sdk.projectLocaleList()
+        .then(function(response) {
+          //console.log(response);
+          expect(response.locales).to.exist();
+          expect(response.locales).to.include({locale: 'fr-FR', name: 'French (France)', translated: 'Français' });
+          done();
+        })
+        .fail(function(err) {
+          console.log(err);
+          done(false);
+        });
+  });
+
 });

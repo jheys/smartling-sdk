@@ -1,0 +1,23 @@
+GET REGEXP /\/v1\/project\/locale\/list\?apiKey=.*&projectId=.*/
+host: sandbox-api.smartling.com
+accept: application/json
+
+200 HTTP/1.1
+server: nginx
+date: Thu, 11 Jun 2015 13:26:04 GMT
+content-type: application/json;charset=UTF-8
+transfer-encoding: chunked
+connection: keep-alive
+vary: Accept-Encoding
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+pragma: no-cache, no-cache
+cache-control: no-cache
+set-cookie: JSESSIONID=DDA9A379091B0A83FF730FAFB23AC25E; Domain=.smartling.com; Path=/; Secure; HttpOnly
+access-control-allow-origin: *
+access-control-max-age: 86400
+content-disposition: inline
+expires: Thu, 01 Jan 1970 00:00:00 GMT
+content-language: en-US
+
+{"response":{"data":{"locales":[{"locale":"ar","name":"Arabic (International)","translated":"العربية"},{"locale":"ar-SA","name":"Arabic (Saudi Arabia)","translated":"العربية"},{"locale":"zh-HK","name":"Chinese (Hong Kong)","translated":"Chinese (Hong Kong)"},{"locale":"zh-CN","name":"Chinese (Simplified)","translated":"中文"},{"locale":"zh-TW","name":"Chinese (Traditional)","translated":"繁體中文"},{"locale":"cs-CZ","name":"Czech","translated":"Czech"},{"locale":"da-DK","name":"Danish","translated":"Dansk"},{"locale":"nl-BE","name":"Dutch (Belgium)","translated":"Nederlands"},{"locale":"nl-NL","name":"Dutch (Netherlands)","translated":"Nederlands"},{"locale":"en-AU","name":"English (Australia)","translated":"English (Australia)"},{"locale":"en-CA","name":"English (Canada)","translated":"English (Canada)"},{"locale":"en-HK","name":"English (China - HK)","translated":"English (China - HK)"},{"locale":"en-MY","name":"English (Malaysia)","translated":"English (Malaysia)"},{"locale":"en-NZ","name":"English (New Zealand)","translated":"English (New Zealand)"},{"locale":"en-SG","name":"English (Singapore)","translated":"English (Singapore)"},{"locale":"en-GB","name":"English (United Kingdom)","translated":"English (United Kingdom)"},{"locale":"fi-FI","name":"Finnish","translated":"Suomi"},{"locale":"fr-BE","name":"French (Belgium)","translated":"French (Belgium)"},{"locale":"fr-CA","name":"French (Canada)","translated":"Français (Canada)"},{"locale":"fr-FR","name":"French (France)","translated":"Français"},{"locale":"de-DE","name":"German (Germany)","translated":"Deutsch"},{"locale":"de-CH","name":"German (Switzerland)","translated":"Deutsch (Schweiz)"},{"locale":"el-GR","name":"Greek","translated":"Greek"},{"locale":"hu-HU","name":"Hungarian","translated":"Hungarian"},{"locale":"it-IT","name":"Italian (Italy)","translated":"Italiano"},{"locale":"ko-KR","name":"Korean","translated":"한국어"},{"locale":"nb-NO","name":"Norwegian (Bokmål)","translated":"Norwegian (Bokmål)"},{"locale":"pl-PL","name":"Polish (Poland)","translated":"Polski"},{"locale":"pt-BR","name":"Portuguese (Brazil)","translated":"Português (Brasil)"},{"locale":"pt-PT","name":"Portuguese (Portugal)","translated":"Portuguese (Portugal)"},{"locale":"ro-RO","name":"Romanian","translated":"Romanian"},{"locale":"ru-RU","name":"Russian","translated":"Русский"},{"locale":"es-CL","name":"Spanish (Chile)","translated":"Spanish (Chile)"},{"locale":"es-CO","name":"Spanish (Colombia)","translated":"Spanish (Colombia)"},{"locale":"es-LA","name":"Spanish (Latin America)","translated":"Spanish (Latin America)"},{"locale":"es-MX","name":"Spanish (Mexico)","translated":"Spanish (Mexico)"},{"locale":"es-PE","name":"Spanish (Peru)","translated":"Spanish (Peru)"},{"locale":"es-ES","name":"Spanish (Spain)","translated":"Español (España)"},{"locale":"sv-SE","name":"Swedish","translated":"Svenska"},{"locale":"th-TH","name":"Thai (Thailand)","translated":"Thai (Thailand)"},{"locale":"tr-TR","name":"Turkish (Turkey)","translated":"Turkish (Turkey)"}]},"code":"SUCCESS","messages":[]}}

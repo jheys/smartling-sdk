@@ -6,12 +6,15 @@ smartling-sdk [![Build Status](https://travis-ci.org/hightail/smartling-sdk.svg?
 Promised based SDK for the [Smartling Translation API](https://docs.smartling.com/display/docs/Smartling+Translation+API)
 
 Supported functions:
-* list
-* status
-* get
-* upload
-* rename
-* delete
+* fileList
+* fileStatus
+* fileGet
+* fileUpload
+* fileRename
+* fileDelete
+* fileImport
+* fileLastModified
+* projectLocaleList
 
 ## How to use smartling-sdk
 
@@ -30,7 +33,7 @@ var SmartlingSdk = require("smartling-sdk");
 var sdk = new SmartlingSdk(SmartlingSdk.API_BASE_URLS.SANDBOX, 'your-smartling-api-key', 'your-smartling-project-id');
 
 // Get a list of available files
-sdk.list()
+sdk.fileList()
   .then(function(response) {
     console.log(response);
   })
@@ -39,7 +42,7 @@ sdk.list()
   });
 
 // Upload a file
-sdk.upload('./path/to/some-file.json', 'some-file', 'json')
+sdk.fileUpload('./path/to/some-file.json', 'some-file', 'json')
   .then(function(response) {
     // File uploaded successfully
     console.log(response);
@@ -49,7 +52,7 @@ sdk.upload('./path/to/some-file.json', 'some-file', 'json')
   });
 
 // Get a status of a file
-sdk.status('some-file', 'en')
+sdk.fileStatus('some-file', 'en')
   .then(function(statusInfo) {
     console.log(statusInfo);
   })
@@ -59,7 +62,7 @@ sdk.status('some-file', 'en')
 
 
 // Get a file
-sdk.get('some-file')
+sdk.fileGet('some-file')
   .then(function(fileContents) {
     // File retrieved successfully
     console.log(fileContents);
@@ -69,7 +72,7 @@ sdk.get('some-file')
   });
 
 // Rename a file
-sdk.rename('some-file', 'some-file-with-a-new-name')
+sdk.fileRename('some-file', 'some-file-with-a-new-name')
   .then(function(response) {
     //File renamed successfully
   })
@@ -78,9 +81,36 @@ sdk.rename('some-file', 'some-file-with-a-new-name')
   });
 
 // Delete a file
-sdk.delete('some-file-with-a-new-name')
+sdk.fileDelete('some-file-with-a-new-name')
   .then(function(response) {
     //File deleted successfully
+  })
+  .fail(function(err) {
+    //an error has occurred
+  });
+
+// Import a file
+sdk.fileImport('./path/to/some-file.json', 'some-file', 'json', 'fr-FR', false, 'PUBLISHED')
+  .then(function(response) {
+    //File imported successfully
+  })
+  .fail(function(err) {
+    //an error has occurred
+  });
+
+// Get a list of last modified dates
+sdk.fileLastModified('some-file')
+  .then(function(response) {
+    console.log(response);
+  })
+  .fail(function(err) {
+    //an error has occurred
+  });
+
+// Get a list of the project's locales
+sdk.projectLocaleList()
+  .then(function(response) {
+    console.log(response);
   })
   .fail(function(err) {
     //an error has occurred

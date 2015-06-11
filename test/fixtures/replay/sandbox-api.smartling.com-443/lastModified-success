@@ -1,0 +1,23 @@
+GET REGEXP /\/v1\/file\/last_modified\?apiKey=.*&projectId=.*&fileUri=translations.json/
+host: sandbox-api.smartling.com
+accept: application/json
+
+200 HTTP/1.1
+server: nginx
+date: Thu, 11 Jun 2015 13:26:03 GMT
+content-type: application/json;charset=UTF-8
+transfer-encoding: chunked
+connection: keep-alive
+vary: Accept-Encoding
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+pragma: no-cache, no-cache
+cache-control: no-cache
+set-cookie: JSESSIONID=ABFA244F24E055C37A6A7DC86ADD54B2; Domain=.smartling.com; Path=/; Secure; HttpOnly
+access-control-allow-origin: *
+access-control-max-age: 86400
+content-disposition: inline
+expires: Thu, 01 Jan 1970 00:00:00 GMT
+content-language: en-US
+
+{"response":{"data":{"items":[{"lastModified":"2015-06-10T21:02:33","locale":"ar"},{"lastModified":"2015-06-10T21:02:33","locale":"ar-SA"},{"lastModified":"2015-06-10T21:02:33","locale":"zh-HK"},{"lastModified":"2015-06-10T21:02:33","locale":"zh-CN"},{"lastModified":"2015-06-10T21:02:33","locale":"zh-TW"},{"lastModified":"2015-06-10T21:02:33","locale":"cs-CZ"},{"lastModified":"2015-06-10T21:02:33","locale":"da-DK"},{"lastModified":"2015-06-10T21:02:33","locale":"nl-BE"},{"lastModified":"2015-06-10T21:02:33","locale":"nl-NL"},{"lastModified":"2015-06-10T21:02:33","locale":"en-AU"},{"lastModified":"2015-06-10T21:02:33","locale":"en-CA"},{"lastModified":"2015-06-10T21:02:33","locale":"en-HK"},{"lastModified":"2015-06-10T21:02:33","locale":"en-MY"},{"lastModified":"2015-06-10T21:02:33","locale":"en-NZ"},{"lastModified":"2015-06-10T21:02:33","locale":"en-SG"},{"lastModified":"2015-06-10T21:02:33","locale":"en-GB"},{"lastModified":"2015-06-10T21:02:33","locale":"fi-FI"},{"lastModified":"2015-06-10T21:02:33","locale":"fr-BE"},{"lastModified":"2015-06-10T21:02:33","locale":"fr-CA"},{"lastModified":"2015-06-10T21:02:33","locale":"fr-FR"},{"lastModified":"2015-06-10T21:02:33","locale":"de-DE"},{"lastModified":"2015-06-10T21:02:33","locale":"de-CH"},{"lastModified":"2015-06-10T21:02:33","locale":"el-GR"},{"lastModified":"2015-06-10T21:02:33","locale":"hu-HU"},{"lastModified":"2015-06-10T21:02:33","locale":"it-IT"},{"lastModified":"2015-06-10T21:02:33","locale":"ko-KR"},{"lastModified":"2015-06-10T21:02:33","locale":"nb-NO"},{"lastModified":"2015-06-10T21:02:33","locale":"pl-PL"},{"lastModified":"2015-06-10T21:02:33","locale":"pt-BR"},{"lastModified":"2015-06-10T21:02:33","locale":"pt-PT"},{"lastModified":"2015-06-10T21:02:33","locale":"ro-RO"},{"lastModified":"2015-06-10T21:02:33","locale":"ru-RU"},{"lastModified":"2015-06-10T21:02:33","locale":"es-CL"},{"lastModified":"2015-06-10T21:02:33","locale":"es-CO"},{"lastModified":"2015-06-10T21:02:33","locale":"es-LA"},{"lastModified":"2015-06-10T21:02:33","locale":"es-MX"},{"lastModified":"2015-06-10T21:02:33","locale":"es-PE"},{"lastModified":"2015-06-10T21:02:33","locale":"es-ES"},{"lastModified":"2015-06-10T21:02:33","locale":"sv-SE"},{"lastModified":"2015-06-10T21:02:33","locale":"th-TH"},{"lastModified":"2015-06-10T21:02:33","locale":"tr-TR"}]},"code":"SUCCESS","messages":[]}}
