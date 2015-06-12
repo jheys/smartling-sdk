@@ -91,7 +91,7 @@ function getStandardSmartlingRequestHandler(deferred) {
         message: "An unknown error occurred"
       };
 
-      if (body && body.response) {
+      if (body && _.isString(body) && /^\{"response":\{(:?.*)\}\}$/.test(body)) {
         errorObject = body.response;
       } else if (error) {
         errorObject = error;
